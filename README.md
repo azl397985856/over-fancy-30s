@@ -12,3 +12,5 @@
 [[第一期]实现一个简化版的 React Hook - useState](./problems/create-useState-from-scratch.md)
 
 [[第二期]实现一个简化版的 async/await](./problems/create-async-await-from-scratch.md)
+
+[[第三期]实现一个对称加密算法](./problems/symmetric-encryption.md)
