@@ -10,7 +10,7 @@ async顾名思义是“异步”的意思，async 关键字后面的函数会隐
 
 补充代码，使得输出符合要求。
 
-```js
+```jsx
 function newAsync(genFunc) {
   // 补充代码
 }

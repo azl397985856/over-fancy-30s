@@ -31,9 +31,21 @@ function Wrapper(component) {
   // 补充代码
 }
 
-Wrapper(Example); // lucifer clicked 0 times
-setTimeout(() => Wrapper(Example), 1000); // lucifer clicked 1 times
-setTimeout(() => Wrapper(Example), 2000); // karl clicked 0 times
+Wrapper(Example);
+
+console.assert(state[0] === 0, `#1 state[0] should be 0, but got ${state[0]}`);
+console.assert(state[1] === "lucifer", `#2 state[1] should be lucifer, but got ${state[1]}`);
+
+setTimeout(() => {
+  Wrapper(Example);
+  console.assert(state[0] === 1 , `#3 state[0] should be 1, but got ${state[0]}`);
+  console.assert(state[1] === "lucifer", `#4 state[1] should be lucifer, but got ${state[1]}`);
+}, 1000);
+setTimeout(() => {
+  Wrapper(Example);
+  console.assert(state[0] === 0, `#5 state[0] should be 0, but got ${state[0]}`);
+  console.assert(state[1] === "karl", `#6 state[1] should be karl, but got ${state[1]}`);
+}, 2000);
 
 ```
 ## 扩展
@@ -82,11 +94,47 @@ function Wrapper(component) {
 const wrapperedExample = Wrapper(Example);
 const wrapperedExample2 = Wrapper(Example2);
 
-wrapperedExample(); // Example: lucifer clicked 0 times
-wrapperedExample2(); // Example2: karl clicked 100 times
-setTimeout(() => wrapperedExample2(), 1000); // Example2: karl clicked 101 times
-setTimeout(() => wrapperedExample(), 1000); // Example: lucifer clicked 1 times
-setTimeout(() => wrapperedExample(), 2000); // Example: karl clicked 0 times
-setTimeout(() => wrapperedExample2(), 2000); // Example2: lucifer clicked 0 times
+wrapperedExample();
+wrapperedExample2();
+
+console.assert(state[0] === 0, `#1 state[0] should be 0, but got ${state[0]}`);
+console.assert(state[1] === "lucifer", `#2 state[1] should be lucifer, but got ${state[1]}`);
+
+wrapperedExample2();
+console.assert(state[2] === 100, `#3 state[2] should be 100, but got ${state[2]}`);
+console.assert(state[3] === "karl", `#4 state[3] should be karl, but got ${state[3]}`);
+
+setTimeout(() => {
+  wrapperedExample2();
+  console.assert(state[2] === 101, `#5 state[2] should be 101, but got ${state[2]}`);
+  console.assert(state[3] === "karl", `#6 state[3] should be karl, but got ${state[3]}`);
+}, 1000);
+setTimeout(() => {
+  wrapperedExample();
+  console.assert(state[0] === 1, `#7 state[0] should be 1, but got ${state[0]}`);
+  console.assert(state[1] === "lucifer", `#8 state[1] should be lucifer, but got ${state[1]}`);
+}, 1000);
+setTimeout(() => {
+  wrapperedExample();
+  console.assert(state[0] === 0, `#9 state[0] should be 0, but got ${state[0]}`);
+  console.assert(state[1] === "karl", `#10 state[1] should be karl, but got ${state[1]}`);
+}, 2000);
+setTimeout(() => {
+  wrapperedExample2();
+  setTimeout(() => {
+    console.assert(state[2] === 0, `#11 state[0] should be 0, but got ${state[2]}`);
+    console.assert(state[3] === "lucifer", `#12 state[1] should be lucifer, but got ${state[3]}`);
+  }, 2000);
+}, 3000);
 
 ```
+
+## 思考
+
+如果需要增加和扩展程序通信的功能， 比如我想显示当前应用所有的hooks信息，
+以及hook的状态是怎么变化的，甚至直接操作改变hooks状态（类似redux调试工具），
+应该怎么组织代码？
+
+## 挑战
+
+画出你实现的hooks版本的内存图
