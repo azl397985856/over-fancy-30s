@@ -14,3 +14,11 @@
 [[第二期]实现一个简化版的 async/await](./problems/create-async-await-from-scratch.md)
 
 [[第三期]实现一个对称加密算法](./problems/symmetric-encryption.md)
+
+[[第四期]实现一个非对称加密算法](./problems/asymmetric-encryption.md)
+
+[[第五期]实现一个稳定排序](./problems/stable-sort.md)
+
+[[第五期]判断一个数字是否为质数](./problems/is-prime.md)
+
+[[第六期]JS中Number类型的可以表示的范围是多少](./problems/js-number-range.md)
