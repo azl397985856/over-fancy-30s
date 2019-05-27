@@ -19,6 +19,6 @@
 
 [[第五期]实现一个稳定排序](./problems/stable-sort.md)
 
-[[第五期]判断一个数字是否为质数](./problems/is-prime.md)
+[[第六期]判断一个数字是否为质数](./problems/is-prime.md)
 
-[[第六期]JS中Number类型的可以表示的范围是多少](./problems/js-number-range.md)
+[[第七期]JS中Number类型的可以表示的范围是多少](./problems/js-number-range.md)
