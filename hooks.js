@@ -1,3 +1,5 @@
+
+// 实现
 let hooks = [];
 let state = [];
 
@@ -13,6 +15,9 @@ function useState(initialState) {
   }
   return [state[pos], payload => (state[pos] = payload)];
 }
+
+
+// 使用
 
 function Example() {
   const [count, setCount] = useState(0);
@@ -59,6 +64,8 @@ const wrapperedExample = Wrapper(Example);
 const wrapperedExample2 = Wrapper(Example2);
 
 wrapperedExample();
+
+// 测试
 
 console.assert(state[0] === 0, `#1 state[0] should be 0, but got ${state[0]}`);
 console.assert(state[1] === "lucifer", `#2 state[1] should be lucifer, but got ${state[1]}`);
