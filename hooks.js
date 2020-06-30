@@ -2,7 +2,7 @@ let hooks = [];
 let state = [];
 
 function useState(initialState) {
-  hooks.push(useState.name); // 这部分存hookData以便用于扩展
+  hooks.push(useState.name); // 这部分存hookData以便用于扩展（比如做 chrome 扩展程序）
 
   const cur = hooks.length - 1;
   const incrementor = hooks.incrementor || 0;
