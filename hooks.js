@@ -46,6 +46,7 @@ function Wrapper(component) {
   return function wrappered() {
     hooks = [];
     if (first) {
+      // incrementor 是为了防止多个组件实例相互影响
       wrappered.incrementor = state.length;
       first = false;
     }
